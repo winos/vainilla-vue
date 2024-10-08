@@ -4,10 +4,10 @@
       <h1>{{ title }}</h1>
       <slot name="header-plugins"></slot>
       <template v-for="hook in getHeaderHooks()" :key="hook.id">
-        <component :is="hook.component.component" :params="hook.params"/>
+        <component :is="hook.component.component" :params="hook.params" />
       </template>
     </header>
-    
+
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
@@ -15,7 +15,21 @@
 
     <!-- Contenido dinámico -->
     <main>
-      <slot></slot>
+      <div class="login-container">
+        <form @submit.prevent="handleSubmit">
+          <h2>Iniciar Sesión</h2>
+          <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" v-model="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" v-model="password" required />
+          </div>
+          <button type="submit" class="btn">Iniciar Sesión</button>
+          <p class="link">¿No tienes cuenta? <RouterLink to="/register">Regístrate aquí</RouterLink></p>
+        </form>
+      </div>
     </main>
 
     <footer>
@@ -31,19 +45,28 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Theme Base'
+      default: 'Bienvenido'
     },
     footerText: {
       type: String,
       default: 'Footer default'
     }
   },
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
   methods: {
     getHeaderHooks() {
-      console.log(useHooks.getHeaderHooks());
-      
-      // Llama a useHooks para obtener los hooks
       return useHooks.getHeaderHooks();
+    },
+    handleSubmit() {
+      // Manejar el envío del formulario
+      console.log('Email:', this.email);
+      console.log('Contraseña:', this.password);
+      // Aquí puedes agregar lógica para autenticar al usuario
     }
   }
 }
@@ -55,6 +78,8 @@ export default {
   min-height: 100vh; /* Asegura que cubra toda la altura de la ventana */
   display: flex;
   flex-direction: column; /* Coloca los elementos en columna */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
 }
 
 header {
@@ -69,7 +94,53 @@ nav {
 
 main {
   flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+  align-items: center; /* Centra verticalmente */
   padding: 20px;
+}
+
+.login-container {
+  background-color: white; /* Fondo blanco para el formulario */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  padding: 20px;
+  width: 300px; /* Ancho del formulario */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Espaciado entre los campos */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Espaciado inferior para la etiqueta */
+}
+
+input {
+  width: 100%; /* Ancho completo */
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.btn {
+  background-color: #007BFF; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de mano */
+  width: 100%; /* Ancho completo */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Color del botón al pasar el ratón */
+}
+
+.link {
+  margin-top: 10px; /* Espaciado superior para el enlace */
+  text-align: center; /* Centra el texto */
 }
 
 footer {
