@@ -1,7 +1,7 @@
 <template>
   <div class="template-selector">
-    <button @click="selectTemplate('one')">Template One</button>
-    <button @click="selectTemplate('two')">Template Two</button>
+    <button @click="selectTemplate('one')">Template 1</button>
+    <button @click="selectTemplate('two')">Template 2</button>
   </div>
 </template>
 
@@ -20,8 +20,8 @@ const selectTemplate = (template) => {
 }
 
 button {
-  padding: 10px 20px;
-  margin: 0 5px;
+  padding: 5px 20px;
+  margin: 0 10px;
   font-size: 16px;
 }
 </style>

@@ -6,10 +6,6 @@ import TheWelcome from '../components/TheWelcome.vue'
 <template>
   <main>
     <TheWelcome />
-
-    <!-- <TemplateLoader templateName="two">
-      <p>This content goes inside Template A!</p>
-    </TemplateLoader> -->
   </main>
 </template>
 

@@ -1,16 +1,31 @@
 <script setup>
-import { ref } from 'vue';
+import { ref , onMounted} from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
 import TemplateSelector from './components/TemplateSelector.vue';
 import TemplateOne from './layout/one.vue'; // Importar TemplateOne
 import TemplateTwo from './layout/two.vue'; // Importar TemplateTwo
 
+import HeaderPluginOne from './components/plugins/HeaderPluginOne.vue'; // Plugin uno
+import HeaderPluginTwo from './components/plugins/HeaderPluginTwo.vue'; // Plugin dos
+
+
+import { useHooks } from './lib/hooks';
+
+
 const selectedTemplate = ref('one'); // Plantilla por defecto
 
 const getTemplateComponent = () => {
   return selectedTemplate.value === 'one' ? TemplateOne : TemplateTwo;
 };
+
+
+// Registrar plugins en los hooks
+onMounted(() => {
+  useHooks.addHeaderHook({ component: HeaderPluginOne, id: 'plugin-one' },   { message: 'Plugin #1' });
+  useHooks.addHeaderHook({ component: HeaderPluginTwo, id: 'plugin-two' }, { message: 'Plugin #2 (lang)' });
+});
+
 </script>
 
 <template>

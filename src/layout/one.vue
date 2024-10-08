@@ -2,6 +2,10 @@
   <div class="layout">
     <header>
       <h1>{{ title }}</h1>
+      <slot name="header-plugins"></slot>
+      <template v-for="hook in getHeaderHooks()" :key="hook.id">
+        <component :is="hook.component.component" :params="hook.params"/>
+      </template>
     </header>
     
     <nav>
@@ -21,6 +25,8 @@
 </template>
 
 <script>
+import { useHooks } from '../lib/hooks'; // Importar el sistema de hooks
+
 export default {
   props: {
     title: {
@@ -30,6 +36,14 @@ export default {
     footerText: {
       type: String,
       default: 'Footer default'
+    }
+  },
+  methods: {
+    getHeaderHooks() {
+      console.log(useHooks.getHeaderHooks());
+      
+      // Llama a useHooks para obtener los hooks
+      return useHooks.getHeaderHooks();
     }
   }
 }
