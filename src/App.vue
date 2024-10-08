@@ -30,29 +30,9 @@ onMounted(() => {
 
 <template>
   <div>
-  <!-- <header>
-    <h1>{{ title }}</h1>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="Fuck!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
-
-      <TemplateSelector @updateTemplate="selectedTemplate = $event" />
-    <!-- </div>
-  </header>
-
-  <main> -->
+    <TemplateSelector @updateTemplate="selectedTemplate = $event" />
     <!-- Asegúrate de tener un único elemento raíz aquí -->
-    <component :is="getTemplateComponent()" />
-    <RouterView />
-  <!-- </main> -->
-
-
+    <component :is="getTemplateComponent()" />  
   </div>
 </template>
 

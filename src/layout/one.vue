@@ -11,11 +11,14 @@
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/signup">Signup</RouterLink>
+      
+      <RouterLink to="/page-builder">Crear Página</RouterLink>
     </nav>
 
     <!-- Contenido dinámico -->
     <main>
-      <div class="login-container">
+      <!-- <div class="login-container">
         <form @submit.prevent="handleSubmit">
           <h2>Iniciar Sesión</h2>
           <div class="form-group">
@@ -29,7 +32,8 @@
           <button type="submit" class="btn">Iniciar Sesión</button>
           <p class="link">¿No tienes cuenta? <RouterLink to="/register">Regístrate aquí</RouterLink></p>
         </form>
-      </div>
+      </div> -->
+        <RouterView />
     </main>
 
     <footer>
@@ -40,6 +44,7 @@
 
 <script>
 import { useHooks } from '../lib/hooks'; // Importar el sistema de hooks
+import { RouterLink, RouterView } from 'vue-router';
 
 export default {
   props: {
@@ -80,6 +85,7 @@ export default {
   flex-direction: column; /* Coloca los elementos en columna */
   align-items: center; /* Centra horizontalmente */
   justify-content: center; /* Centra verticalmente */
+  width: 100%;
 }
 
 header {

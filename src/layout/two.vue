@@ -23,7 +23,7 @@
 
       <!-- Contenido dinámico -->
       <main>
-        <div class="login-container">
+        <!-- <div class="login-container">
           <form @submit.prevent="handleSubmit">
             <h2>Iniciar Sesión</h2>
             <div class="form-group">
@@ -37,7 +37,9 @@
             <button type="submit" class="btn">Iniciar Sesión</button>
             <p class="link">¿No tienes cuenta? <RouterLink to="/register">Regístrate aquí</RouterLink></p>
           </form>
-        </div>
+        </div> -->
+        <RouterView />
+
       </main>
 
       <footer>
@@ -49,6 +51,7 @@
 
 <script>
 import { useHooks } from '../lib/hooks'; // Importar el sistema de hooks
+import { RouterLink, RouterView } from 'vue-router';
 
 export default {
   props: {
